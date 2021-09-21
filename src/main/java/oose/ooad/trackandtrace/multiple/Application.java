@@ -5,12 +5,12 @@ public class Application {
         ParcelManager manager = new ParcelManager();
         MobileListener mobileListener = new MobileListener("0687654321");
 
-        int packageNr = manager.createNewParcelTracking();
+        int packageNr = manager.createNewParcel("HAN R26");
         manager.attach(packageNr, new EmailAlertListener("gebruiker1@han.nl"));
         manager.attach(packageNr, new MobileListener("0612345678"));
 //        manager.addParcelListener(packageNr, mobileListener);
 
-//        int packageNr2 = manager.createNewParcelTracking();
+//        int packageNr2 = manager.createNewParcel();
 //        manager.addParcelListener(packageNr2, new EmailAlertListener("beheerder@han.nl"));
 //        manager.addParcelListener(packageNr2, mobileListener);
 

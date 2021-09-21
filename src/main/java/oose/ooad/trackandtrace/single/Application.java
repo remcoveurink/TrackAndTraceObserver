@@ -2,16 +2,21 @@ package oose.ooad.trackandtrace.single;
 
 public class Application {
     public static void main(String[] args) {
-        ParcelManager manager = new ParcelManager();
-        manager.attach(new DispatchListener(manager));
+        ParcelTracker tracker = new ParcelTracker("HAN R26");
+        DispatchListener dispatchListener = new DispatchListener(tracker);
 
-        manager.attach(new MobileListener("0612345678"));
-        manager.attach(new EmailAlertListener("piet@han.nl"));
+        tracker.attach(new MobileListener("0612345678"));
+        tracker.attach(new EmailAlertListener("piet@han.nl"));
 
-        manager.updateLocation(ParcelLocation.ACKNOWLEDGED);
-        manager.updateLocation(ParcelLocation.SHIPPED);
-        manager.updateLocation(ParcelLocation.DISPATCH);
+        tracker.updateLocation(ParcelLocation.ACKNOWLEDGED);
+        tracker.updateLocation(ParcelLocation.SHIPPED);
+        tracker.updateLocation(ParcelLocation.DISPATCH);
 
-        manager.updateLocation(ParcelLocation.DELIVERED);
+        while(tracker.getLocation() != ParcelLocation.DELIVERY) {
+            // Wait if dispatch handling would have been done on a different thread
+            tracker.notifyListeners(); // hack to avoid suggestion to remove while loop
+        }
+        tracker.detach(dispatchListener);
+        tracker.updateLocation(ParcelLocation.DELIVERED);
     }
 }

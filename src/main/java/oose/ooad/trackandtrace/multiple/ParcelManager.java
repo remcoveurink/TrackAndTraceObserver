@@ -5,15 +5,13 @@ import java.util.Map;
 import java.util.Random;
 
 public class ParcelManager {
-    private Map<Integer, ParcelTracking> parcelLocationManagers = new HashMap<>();
+    private Map<Integer, ParcelTracker> parcelLocationManagers = new HashMap<>();
     private Random randomParcelNumberGenerator = new Random();
-    private DispatchListener dispatch = new DispatchListener(this);
 
-    public int createNewParcelTracking() {
+    public int createNewParcel(String recipient) {
         int parcelNumber = getUniqueParcelNumber();
-        ParcelTracking parcelTracking = new ParcelTracking(parcelNumber);
-        parcelTracking.attach(dispatch);
-        parcelLocationManagers.put(parcelNumber, parcelTracking);
+        ParcelTracker parcelTracker = new ParcelTracker(parcelNumber, recipient);
+        parcelLocationManagers.put(parcelNumber, parcelTracker);
         return parcelNumber;
     }
 

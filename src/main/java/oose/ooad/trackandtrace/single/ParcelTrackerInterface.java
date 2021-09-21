@@ -2,7 +2,7 @@ package oose.ooad.trackandtrace.single;
 
 import java.util.ArrayList;
 
-public class ParcelManagerInterface {
+public class ParcelTrackerInterface {
     protected ArrayList<ParcelLocationListener> listeners = new ArrayList<>();
     protected ParcelLocation currentParcelLocation = ParcelLocation.UNKNOWN;
 

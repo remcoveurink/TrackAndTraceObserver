@@ -2,14 +2,18 @@ package oose.ooad.trackandtrace.multiple;
 
 import java.util.ArrayList;
 
-public class ParcelTracking {
-    private ArrayList<ParcelLocationListener> listeners = new ArrayList<>();
-    private int parcelNumber;
+public class ParcelTracker {
+    private final ArrayList<ParcelLocationListener> listeners;
+    private final int parcelNumber;
+    private final String recipient;
     private ParcelLocation currentParcelLocation;
 
-    public ParcelTracking(int parcelNumber) {
+    public ParcelTracker(int parcelNumber, String recipient) {
         this.parcelNumber = parcelNumber;
+        this.recipient = recipient;
         this.currentParcelLocation = ParcelLocation.UNKNOWN;
+        this.listeners = new ArrayList<>();
+        new DispatchListener(this); // prepare for processing when arriving at dispatch
     }
 
     public void attach(ParcelLocationListener listener) {
@@ -27,5 +31,9 @@ public class ParcelTracking {
     public void updateLocation(ParcelLocation parcelLocation) {
         this.currentParcelLocation = parcelLocation;
         notifyListeners();
+    }
+
+    public String getRecipient() {
+        return recipient;
     }
 }

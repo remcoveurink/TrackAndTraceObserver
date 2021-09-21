@@ -1,19 +1,19 @@
 package oose.ooad.trackandtrace.multiple;
 
 public class DispatchListener implements ParcelLocationListener {
-    private ParcelManager manager;
+    private ParcelTracker parcelTracker;
 
-    public DispatchListener(ParcelManager manager) {
-        this.manager = manager;
+    public DispatchListener(ParcelTracker parcelTracker) {
+        this.parcelTracker = parcelTracker;
+        this.parcelTracker.attach(this);
     }
 
     @Override
     public void update(int parcelNumber, ParcelLocation parcelLocation) {
         if(parcelLocation == ParcelLocation.DISPATCH) {
-            //TODO: process
-            manager.updateLocation(parcelNumber, ParcelLocation.DELIVERY);
-        } else {
-            // not relevant for dispatch
+            String recipient = parcelTracker.getRecipient();
+            //TODO: process recipient address routing
+            parcelTracker.updateLocation(ParcelLocation.DELIVERY);
         }
     }
 }
