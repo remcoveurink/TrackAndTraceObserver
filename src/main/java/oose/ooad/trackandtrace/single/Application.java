@@ -10,11 +10,12 @@ public class Application {
 
         tracker.updateLocation(ParcelLocation.ACKNOWLEDGED);
         tracker.updateLocation(ParcelLocation.SHIPPED);
+        tracker.updateLocation(ParcelLocation.TRANSITION);
         tracker.updateLocation(ParcelLocation.DISPATCH);
 
         while(tracker.getLocation() != ParcelLocation.DELIVERY) {
             // Wait if dispatch handling would have been done on a different thread
-            tracker.notifyListeners(); // hack to avoid suggestion to remove while loop
+            // observers are generally synchronous though, unlike pub/sub
         }
         tracker.detach(dispatchListener);
         tracker.updateLocation(ParcelLocation.DELIVERED);

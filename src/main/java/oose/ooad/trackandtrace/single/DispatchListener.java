@@ -1,7 +1,7 @@
 package oose.ooad.trackandtrace.single;
 
 public class DispatchListener implements ParcelLocationListener {
-    private ParcelTracker manager;
+    private final ParcelTracker manager;
 
     public DispatchListener(ParcelTracker manager) {
         this.manager = manager;

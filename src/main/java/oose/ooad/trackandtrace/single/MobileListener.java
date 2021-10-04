@@ -1,7 +1,7 @@
 package oose.ooad.trackandtrace.single;
 
 public class MobileListener implements ParcelLocationListener {
-    private String mobileNumber;
+    private final String mobileNumber;
 
     public MobileListener(String mobileNumber) {
         this.mobileNumber = mobileNumber;

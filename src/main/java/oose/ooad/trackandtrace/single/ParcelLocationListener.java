@@ -1,5 +1,5 @@
 package oose.ooad.trackandtrace.single;
 
 public interface ParcelLocationListener {
-    public void update(ParcelLocation parcelLocation);
+    void update(ParcelLocation parcelLocation);
 }

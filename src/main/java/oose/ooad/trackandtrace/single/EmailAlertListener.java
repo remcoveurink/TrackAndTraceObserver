@@ -1,7 +1,7 @@
 package oose.ooad.trackandtrace.single;
 
 public class EmailAlertListener implements ParcelLocationListener {
-    private String mailAddress;
+    private final String mailAddress;
 
     public EmailAlertListener(String mailAddress) {
         this.mailAddress = mailAddress;

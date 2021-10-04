@@ -8,20 +8,21 @@ public class Application {
         int packageNr = manager.createNewParcel("HAN R26");
         manager.attach(packageNr, new EmailAlertListener("gebruiker1@han.nl"));
         manager.attach(packageNr, new MobileListener("0612345678"));
-//        manager.addParcelListener(packageNr, mobileListener);
+        manager.attach(packageNr, mobileListener);
 
-//        int packageNr2 = manager.createNewParcel();
-//        manager.addParcelListener(packageNr2, new EmailAlertListener("beheerder@han.nl"));
-//        manager.addParcelListener(packageNr2, mobileListener);
+//        int packageNr2 = manager.createNewParcel("HAN R31");
+//        manager.attach(packageNr2, new EmailAlertListener("beheerder@han.nl"));
+//        manager.attach(packageNr2, mobileListener);
 
         manager.updateLocation(packageNr, ParcelLocation.ACKNOWLEDGED);
-//        manager.updateLocation(packageNr2, Location.ACKNOWLEDGED);
+//        manager.updateLocation(packageNr2, ParcelLocation.ACKNOWLEDGED);
         manager.updateLocation(packageNr, ParcelLocation.SHIPPED);
+        manager.updateLocation(packageNr, ParcelLocation.TRANSITION);
         manager.updateLocation(packageNr, ParcelLocation.DISPATCH);
-//        manager.updateLocation(packageNr2, Location.SHIPPED);
+//        manager.updateLocation(packageNr2, ParcelLocation.SHIPPED);
 
         manager.updateLocation(packageNr, ParcelLocation.DELIVERED);
-//        manager.updateLocation(packageNr2, Location.DISPATCH);
-//        manager.updateLocation(packageNr2, Location.DELIVERED);
+//        manager.updateLocation(packageNr2, ParcelLocation.DISPATCH);
+//        manager.updateLocation(packageNr2, ParcelLocation.DELIVERED);
     }
 }
